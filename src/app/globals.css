@@ -1,0 +1,214 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 15% 96%; /* Very light, slightly cool off-white, almost neutral */
+    --foreground: 220 25% 20%; /* Dark desaturated blue-gray */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 220 25% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 20%;
+
+    --primary: 210 90% 50%; /* Vibrant Blue */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 220 30% 92%; /* Light cool gray-blue */
+    --secondary-foreground: 210 90% 50%;
+
+    --muted: 220 30% 95%; /* Lighter cool gray-blue */
+    --muted-foreground: 220 20% 45%; /* Muted desaturated blue */
+
+    --accent: 200 95% 45%; /* Bright Cyan/Teal - This was for general accent, not red for neon */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%; /* Standard red - Used for neon red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%; /* Slightly warmer/softer light gray-blue border */
+    --input: 220 30% 94%;
+    --ring: 210 90% 55%; /* Brighter blue for ring */
+
+    --chart-1: 210 90% 50%;
+    --chart-2: 200 95% 45%;
+    --chart-3: 210 80% 60%;
+    --chart-4: 200 80% 55%;
+    --chart-5: 210 50% 45%;
+    --radius: 0.75rem; /* Increased from 0.5rem */
+
+    /* Sidebar colors - Light Theme */
+    --sidebar-background: 220 30% 94%;
+    --sidebar-foreground: 220 25% 20%;
+    --sidebar-primary: 210 90% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 95% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 15% 85%;
+    --sidebar-ring: 210 90% 55%;
+  }
+
+  .dark {
+    --background: 220 15% 8%; /* Deeper dark desaturated blue */
+    --foreground: 220 25% 90%; /* Light cool gray */
+
+    --card: 220 15% 12%; /* Darker desaturated blue */
+    --card-foreground: 220 25% 90%;
+
+    --popover: 220 15% 8%;
+    --popover-foreground: 220 25% 90%;
+
+    --primary: 210 90% 60%; /* Lighter vibrant blue */
+    --primary-foreground: 220 15% 10%;
+
+    --secondary: 220 20% 18%; /* Dark muted blue */
+    --secondary-foreground: 220 25% 90%;
+
+    --muted: 220 20% 15%; /* Darker muted blue */
+    --muted-foreground: 220 15% 55%; /* Muted lighter blue-gray */
+
+    --accent: 200 95% 55%; /* Bright Cyan/Teal */
+    --accent-foreground: 220 15% 10%;
+
+    --destructive: 0 70% 50%; /* Red for dark theme */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 18%; /* Darker, less saturated gray-blue border */
+    --input: 220 15% 18%;
+    --ring: 210 90% 65%;
+
+    --chart-1: 210 90% 60%;
+    --chart-2: 200 95% 55%;
+    --chart-3: 210 80% 65%;
+    --chart-4: 200 80% 70%;
+    --chart-5: 210 40% 55%;
+
+    /* Sidebar colors - Dark Theme */
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 220 25% 90%;
+    --sidebar-primary: 210 90% 60%;
+    --sidebar-primary-foreground: 220 15% 10%;
+    --sidebar-accent: 200 95% 55%;
+    --sidebar-accent-foreground: 220 15% 10%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 210 90% 65%;
+  }
+}
+
+@layer utilities {
+  .text-neon-white-glow {
+    text-shadow:
+      0 0 3px #fff,
+      0 0 6px #fff,
+      0 0 10px #fff,
+      0 0 15px rgba(220, 220, 255, 0.7); /* A very light blueish white for outer glow */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply text-foreground;
+    /* background-color is handled by DynamicBackground or direct body style */
+  }
+}
+
+/* Neon blinking animation for malfunction effect */
+@keyframes neon-blink-animation {
+  0%, 80%, 100% { opacity: 1; }
+  80.1%, 80.5% { opacity: 0.3; } /* Quick off */
+  80.6%, 81% { opacity: 1; }     /* Quick on */
+  81.1%, 81.4% { opacity: 0.5; } /* Dim */
+  81.5%, 81.8% { opacity: 1; }     /* Quick on */
+  81.9%, 82.1% { opacity: 0.2; } /* Very off */
+  82.2%, 83% { opacity: 1; }     /* Back on */
+}
+
+.animate-neon-blink {
+  animation: neon-blink-animation 4s infinite linear;
+}
+
+/* New class for red neon star - Enhanced Glow */
+.icon-neon-red-malfunction {
+  color: hsl(var(--destructive)); /* Base red color */
+  text-shadow:
+    /* Bright white core - intensified */
+    0 0 2px #fff,
+    0 0 5px #fff,
+    0 0 10px #fff,
+    /* Inner red glow */
+    0 0 12px hsl(var(--destructive)),
+    /* Main red neon glow layers - wider and more intense */
+    0 0 20px hsl(var(--destructive)),
+    0 0 35px hsl(var(--destructive)),
+    0 0 50px hsl(var(--destructive)),
+    0 0 75px hsla(var(--destructive), 0.8), /* slightly less opaque outer glow */
+    0 0 100px hsla(var(--destructive), 0.6); /* most diffuse outer glow */
+}
+
+
+/* Twinkle animation for background dots */
+@keyframes twinkle-animation {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.7; /* Increased subtle opacity for more diffusion */
+    transform: scale(1);
+  }
+}
+
+.twinkle-dot {
+  position: absolute;
+  width: 4px; /* Slightly larger dot */
+  height: 4px; /* Slightly larger dot */
+  /* background is now set via inline style in JS */
+  border-radius: 50%;
+  animation-name: twinkle-animation;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  pointer-events: none; /* So they don't interfere with interactions */
+}
+
+/* New Falling star styles */
+.falling-star {
+  position: absolute;
+  top: 0; /* Stars start their animation journey from the top edge of the container */
+  width: 2px; /* thin line */
+  /* Height will be set via inline style from JS */
+  /* Colors for gradient will be set via CSS variables from JS */
+  background: linear-gradient(
+    180deg, /* Top to bottom */
+    var(--star-base-color-transparent, rgba(255, 255, 255, 0)) 0%, /* Fully transparent at the very top of the tail */
+    var(--star-base-color-semi-transparent, rgba(255, 255, 255, 0.4)) 60%, /* Middle of tail, more opaque */
+    var(--star-base-color-opaque, rgba(255, 255, 255, 0.85)) 100% /* Head of the star, most opaque */
+  );
+  animation-name: fall-animation;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards; 
+  pointer-events: none;
+  opacity: 0; /* Start invisible, animation will control visibility */
+}
+
+@keyframes fall-animation {
+  0% {
+    transform: translateY(-100%); /* Start its own height above the 'top: 0' position */
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1; 
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh); /* Fall down the entire viewport height relative to its start */
+    opacity: 0;
+  }
+}
